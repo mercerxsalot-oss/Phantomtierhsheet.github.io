@@ -475,7 +475,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
 .team-card-banner{height:5px;width:100%;flex-shrink:0;}
 .team-card-body{padding:16px 14px 14px;display:flex;flex-direction:column;align-items:center;gap:0;flex:1;}
 .team-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 14px 40px rgba(30,111,255,.2);}
-.team-logo-img{width:52px;height:52px;object-fit:contain;margin:0 auto 10px;display:block;}
+.team-logo-img{width:56px;height:38px;object-fit:cover;margin:0 auto 10px;display:block;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.3);}
 .team-card-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--white);margin-bottom:2px;text-align:center;line-height:1.2;}
 .team-card-city{font-size:9px;color:var(--gray);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase;}
 .team-card-footer{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;}
@@ -485,7 +485,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
 .team-mod-header{position:relative;overflow:hidden;}
 .team-mod-color-bar{height:6px;width:100%;}
 .team-mod-top{display:flex;align-items:center;gap:18px;padding:22px 22px 16px;}
-.team-mod-logo{width:72px;height:72px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));}
+.team-mod-logo{width:80px;height:52px;object-fit:cover;flex-shrink:0;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.4);}
 .team-mod-info{flex:1;min-width:0;}
 .team-mod-name{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:4px;}
 .team-mod-sub{font-size:11px;color:var(--gray);letter-spacing:1px;margin-bottom:10px;}
@@ -509,7 +509,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
 .tp-rat{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;color:var(--blue3);flex-shrink:0;min-width:36px;text-align:right;}
 /* Team name pill on tiersheet */
 .team-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(30,111,255,.08);border:1px solid rgba(30,111,255,.15);border-radius:20px;padding:1px 6px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--blue3);pointer-events:none;margin-top:3px;}
-.team-pill img{width:12px;height:12px;object-fit:contain;}
+.team-pill img{width:16px;height:11px;object-fit:cover;border-radius:2px;}
 
 /* FIFA-style stat hexagon mini stats on player card */
 .pc-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px 6px;margin-top:8px;pointer-events:none;}
@@ -550,7 +550,7 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
 
 /* Best Player badge */
 .best-player-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,rgba(245,166,35,.2),rgba(245,166,35,.08));border:1px solid rgba(245,166,35,.4);border-radius:20px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;color:#fbbf24;text-transform:uppercase;}
-.team-pill img{width:12px;height:12px;object-fit:contain;}
+.team-pill img{width:16px;height:11px;object-fit:cover;border-radius:2px;}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px;}
@@ -988,10 +988,10 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
       <div class="page-hero">
         <div class="page-hero-top">
           <div>
-            <h2>La Liga Teams</h2>
-            <p>All 8 clubs · 2024/25 Season</p>
+            <h2>World Cup Teams</h2>
+            <p>10 National Teams · 2026 World Cup</p>
           </div>
-          <span class="hero-badge">La Liga · ES</span>
+          <span class="hero-badge">FIFA World Cup 2026</span>
         </div>
       </div>
       <div style="padding:16px 20px 48px;">
@@ -1225,21 +1225,26 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);min
         <select class="finp" id="ep-tier"><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option><option>Tier 4</option></select></div>
       <div class="fg"><label class="flbl">Nation</label><input class="finp" id="ep-nat" placeholder="ENG" maxlength="4"></div>
       <div class="fg"><label class="flbl">Value (M)</label><input class="finp" id="ep-val" type="number" min="0" step="0.1" placeholder="0.0"></div>
-      <div class="fg"><label class="flbl">Goals</label><input class="finp" id="ep-gls" type="number" min="0" placeholder="0"></div>
-      <div class="fg"><label class="flbl">Assists</label><input class="finp" id="ep-ast" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="ep-gls-wrap"><label class="flbl">Goals</label><input class="finp" id="ep-gls" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="ep-ast-wrap"><label class="flbl">Assists</label><input class="finp" id="ep-ast" type="number" min="0" placeholder="0"></div>
       <div class="fg full"><label class="flbl">Avatar URL</label><input class="finp" id="ep-ava" placeholder="https://..." maxlength="300"></div>
-      <div class="fg"><label class="flbl">Position</label><input class="finp" id="ep-pos" placeholder="e.g. ST, CAM, GK" maxlength="20"></div>
-      <div class="fg full"><label class="flbl">La Liga Team</label>
+      <div class="fg"><label class="flbl">Position</label><input class="finp" id="ep-pos" placeholder="e.g. ST, CAM, GK" maxlength="20" oninput="toggleGKFields('ep','sl')"></div>
+      <div class="fg" id="ep-cs-wrap" style="display:none"><label class="flbl">Clean Sheets</label><input class="finp" id="ep-cs" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="ep-sav-wrap" style="display:none"><label class="flbl">Saves</label><input class="finp" id="ep-sav" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="ep-chc-wrap" style="display:none"><label class="flbl">Chances Created</label><input class="finp" id="ep-chc" type="number" min="0" placeholder="0"></div>
+      <div class="fg full"><label class="flbl">National Team</label>
         <select class="finp" id="ep-team">
           <option value="">— No Team —</option>
-          <option value="atleti">Atlético Madrid</option>
-          <option value="barca">FC Barcelona</option>
-          <option value="osasuna">CA Osasuna</option>
-          <option value="girona">Girona FC</option>
-          <option value="athletic">Athletic Bilbao</option>
-          <option value="real">Real Madrid</option>
-          <option value="betis">Real Betis</option>
-          <option value="villar">Villarreal CF</option>
+          <option value="brazil">Brazil</option>
+          <option value="spain">Spain</option>
+          <option value="egypt">Egypt</option>
+          <option value="japan">Japan</option>
+          <option value="argentina">Argentina</option>
+          <option value="morocco">Morocco</option>
+          <option value="saudi">Saudi Arabia</option>
+          <option value="mexico">Mexico</option>
+          <option value="portugal">Portugal</option>
+          <option value="canada">Canada</option>
         </select>
       </div>
       <div class="fg full"><label class="flbl">Bio / Description</label><textarea class="finp" id="ep-bio" placeholder="Tell your story... achievements, playstyle, career highlights..." maxlength="300" rows="3" style="resize:vertical;min-height:70px;font-family:inherit;font-size:13px;"></textarea></div>
@@ -1592,6 +1597,9 @@ const EJS_KEY      = 'angZ__SXPWAs4D9F5';
 // ═══════════════════════════════════════════
 const ADMIN = 'iysox';
 const STATS = ['Shooting','Passing','Dribbling','Pace','Defending','Physical'];
+  const GK_STATS = ['Diving','Handling','Kicking','Reflexes','Positioning','Speed'];
+  function isGK(pos){ return pos && pos.trim().toLowerCase() === 'gk'; }
+  function getStatsFor(pp){ return isGK(pp?.position) ? GK_STATS : STATS; }
 const UK = 'phm_users_v8';
 const SK = 'phm_sess_v8';
 const VK = 'phm_verify_v8';
@@ -1853,16 +1861,154 @@ async function logSecurityAlert(type, details, ipData){
 // IP INTELLIGENCE — parallel race, never cache Unknown
 // ═══════════════════════════════════════════
 const VPN_KEYWORDS = [
-  'vpn','proxy','hosting','datacenter','data center','digital ocean','linode',
-  'vultr','hetzner','ovh','amazon','google cloud','microsoft azure','cloudflare',
+  'vpn','proxy','hosting','datacenter','data center','data-center','colocation','colo ',
+  'digital ocean','digitalocean','linode','vultr','hetzner','ovh','contabo','kamatera',
+  'amazon','google cloud','microsoft azure','cloudflare','oracle cloud',
   'mullvad','nordvpn','expressvpn','surfshark','cyberghost','ipvanish','pia ',
   'private internet','hidemyass','tunnelbear','hotspot shield','windscribe',
   'astrill','purevpn','hide.me','protonvpn','torguard','ivpn','perfect privacy',
   'akamai','fastly','aws ','ec2','gce','azure','as13335','as14061','as16509',
+  'tor exit','tor relay','relay','anonymizer','anonymous','anon proxy',
+  'vpngate','psiphon','ultrasurf','lantern','shadowsocks','wireguard','openvpn',
+  'zscaler','forticlient','palo alto','f5 network','squid','privado','atlasvpn',
+  'warp ','1.1.1.1','cloudflarew','strong vpn','strongvpn','vyprvpn','zenmate',
+  'betternet','keepsolid','speedify','privatevpn','cactus vpn','cactusvpn',
+  'm247','leaseweb','choopa','quadranet','psychz','reliablesite','buyvm',
+  'hostwind','hostinger','ionos','scaleway','upcloud','cherry server',
+  'serverius','i3d','path.net','zenlayer','g-core','edgecast',
+  'cdn77','stackpath','keycdn','bunny','incapsula','sucuri',
+  'as174','as3356','as1299','as6939','as6461','as3257','as2914',
+];
+const VPN_ASN_LIST = [
+  'AS9009','AS20473','AS14061','AS16509','AS13335','AS8100','AS62904','AS60068','AS51167',
+  'AS212238','AS207137','AS206264','AS398101','AS396982','AS395954','AS209','AS36352',
+  'AS63949','AS46562','AS45102','AS40021','AS35916','AS35415','AS33438','AS32613',
+  'AS31898','AS30633','AS29802','AS28753','AS25369','AS24940','AS23470','AS22612',
+  'AS21859','AS20860','AS19624','AS18978','AS16276','AS15169','AS14618','AS13213',
+  'AS12876','AS12552','AS9370','AS8075','AS7506','AS6724','AS5580','AS4134',
 ];
 function detectVPNFromOrg(org){
   if(!org) return false;
   return VPN_KEYWORDS.some(k => org.toLowerCase().includes(k));
+}
+function detectVPNFromASN(asn){
+  if(!asn) return false;
+  const normalized = asn.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  return VPN_ASN_LIST.some(a => normalized.includes(a.replace('AS','')) || normalized === a);
+}
+
+// Advanced timezone-vs-country mismatch detection
+const COUNTRY_TZ_MAP = {
+  US:['America/'],EG:['Africa/Cairo'],SA:['Asia/Riyadh'],
+  GB:['Europe/London'],DE:['Europe/Berlin'],FR:['Europe/Paris'],
+  JP:['Asia/Tokyo'],BR:['America/Sao_Paulo','America/'],
+  AR:['America/Argentina','America/Buenos_Aires'],
+  MX:['America/Mexico','America/'],ES:['Europe/Madrid'],
+  MA:['Africa/Casablanca'],PT:['Europe/Lisbon'],CA:['America/'],
+  IN:['Asia/Kolkata','Asia/Calcutta'],AU:['Australia/'],
+  IT:['Europe/Rome'],NL:['Europe/Amsterdam'],TR:['Europe/Istanbul'],
+  KR:['Asia/Seoul'],CN:['Asia/Shanghai'],RU:['Europe/Moscow','Asia/'],
+};
+function detectTZMismatch(countryCode){
+  if(!countryCode) return false;
+  const cc = countryCode.toUpperCase();
+  const tzPrefixes = COUNTRY_TZ_MAP[cc];
+  if(!tzPrefixes) return false; // unknown country, can't check
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if(!tz) return false;
+    return !tzPrefixes.some(p => tz.startsWith(p));
+  } catch(e){ return false; }
+}
+
+// WebRTC IP leak detection
+function getWebRTCIPs(){
+  return new Promise(resolve=>{
+    const ips = new Set();
+    try {
+      const pc = new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
+      pc.createDataChannel('');
+      const timeout = setTimeout(()=>{ pc.close(); resolve([...ips]); }, 3000);
+      pc.onicecandidate = e => {
+        if(!e.candidate) return;
+        const m = e.candidate.candidate.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/);
+        if(m && !m[1].startsWith('0.') && m[1]!=='0.0.0.0') ips.add(m[1]);
+      };
+      pc.createOffer().then(o=>pc.setLocalDescription(o)).catch(()=>{});
+      setTimeout(()=>{ clearTimeout(timeout); pc.close(); resolve([...ips]); }, 3000);
+    } catch(e){ resolve([]); }
+  });
+}
+
+// Multi-source IP comparison to detect VPN IP masking
+async function crossCheckIPs(primaryIP){
+  try {
+    const webrtcIPs = await getWebRTCIPs();
+    // If WebRTC reveals a DIFFERENT public IP than what the API says, it's a VPN leak
+    const publicWebRTC = webrtcIPs.filter(ip => !ip.startsWith('10.') && !ip.startsWith('192.168.') && !ip.startsWith('172.'));
+    if(publicWebRTC.length > 0 && primaryIP && primaryIP !== 'Unknown'){
+      const mismatch = publicWebRTC.some(ip => ip !== primaryIP);
+      if(mismatch) return { vpnLeak: true, realIPs: publicWebRTC, reportedIP: primaryIP };
+    }
+    return { vpnLeak: false };
+  } catch(e){ return { vpnLeak: false }; }
+}
+
+// Comprehensive VPN detection combining all signals
+async function runFullVPNCheck(ipData){
+  const signals = [];
+  let isVPN = false;
+
+  // Signal 1: API-reported VPN/proxy flags
+  if(ipData.vpn){ signals.push('API_VPN_FLAG'); isVPN = true; }
+  if(ipData.proxy){ signals.push('PROXY_FLAG'); isVPN = true; }
+  if(ipData.tor){ signals.push('TOR_FLAG'); isVPN = true; }
+
+  // Signal 2: Org/ISP keyword match
+  if(detectVPNFromOrg(ipData.org)){ signals.push('ORG_MATCH:'+ipData.org); isVPN = true; }
+
+  // Signal 3: ASN match against known VPN/datacenter ASNs
+  if(detectVPNFromASN(ipData.as)){ signals.push('ASN_MATCH:'+ipData.as); isVPN = true; }
+
+  // Signal 4: Timezone mismatch
+  const tzMismatch = detectTZMismatch(ipData.countryCode);
+  if(tzMismatch){ signals.push('TZ_MISMATCH'); }
+
+  // Signal 5: WebRTC IP leak check
+  const crossCheck = await crossCheckIPs(ipData.ip);
+  if(crossCheck.vpnLeak){ signals.push('WEBRTC_LEAK:'+crossCheck.realIPs.join(',')); isVPN = true; }
+
+  // If 2+ weak signals detected, mark as VPN even if no single strong signal
+  const weakSignals = [tzMismatch, ipData.ip==='Unknown'].filter(Boolean).length;
+  if(weakSignals >= 2 && !isVPN){ signals.push('MULTI_WEAK_SIGNALS'); isVPN = true; }
+
+  return { isVPN, signals, crossCheck };
+}
+
+// Log VPN attempt to Discord
+async function logVPNAttempt(action, username, ipData, vpnResult){
+  const cc = (ipData.countryCode||'').toUpperCase().trim();
+  const flag = countryFlag(cc);
+  const location = [ipData.city,ipData.region,ipData.country].filter(Boolean).join(', ');
+  const browserTZ = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch(e){ return 'Unknown'; } })();
+  await sendWebhook({
+    title: '🛡️ VPN/PROXY BLOCKED — ' + action,
+    color: 0xff0000,
+    description: `**${esc(username||'Unknown')}** was BLOCKED from ${action.toLowerCase()} — VPN/Proxy detected`,
+    fields: [
+      { name: '👤 Username',      value: '`' + (username||'Unknown') + '`', inline: true },
+      { name: (flag||'🌍')+' Country', value: '`' + (ipData.country||'Unknown') + '`' + (cc?' ('+cc+')':''), inline: true },
+      { name: '📍 Location',      value: '`' + (location||'Unknown') + '`', inline: true },
+      { name: '🌐 IP',            value: '`' + (ipData.ip||'Unknown') + '`', inline: true },
+      { name: '🏢 ISP / Org',     value: '`' + (ipData.org||'Unknown') + '`', inline: true },
+      { name: '📡 ASN',           value: '`' + (ipData.as||'Unknown') + '`', inline: true },
+      { name: '🕐 Browser TZ',    value: '`' + browserTZ + '`', inline: true },
+      { name: '🚩 Detection Signals', value: '```\n' + (vpnResult.signals.join('\n') || 'none') + '\n```', inline: false },
+      { name: '🔍 WebRTC Leak?',  value: vpnResult.crossCheck?.vpnLeak ? '**YES** — Real IPs: `' + (vpnResult.crossCheck.realIPs||[]).join(', ') + '`\nReported: `' + (vpnResult.crossCheck.reportedIP||'?') + '`' : 'No leak detected', inline: false },
+    ],
+    footer: { text: 'PHM Anti-VPN Shield — Automated Block' },
+    timestamp: new Date().toISOString()
+  });
 }
 
 // Fetch with a hard timeout so no API hangs forever
@@ -2287,9 +2433,10 @@ function pcHTML(u,c,adm){
         <button class="pc-edit-btn vis" style="background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.35);width:auto;padding:7px 10px;" onclick="confirmDeleteUser('${u.id}','${esc(u.username)}')">Del</button>
       </div>`
     : '';
-  // FIFA-style mini attribute badges
+  // FIFA-style mini attribute badges (GK-aware)
+  const pStats = getStatsFor(pp);
   const miniStats = `<div class="pc-stats-row">
-    ${STATS.map(s=>{
+    ${pStats.map(s=>{
       const v=+(pp[s.toLowerCase()])||60;
       const color = v>=85?'#34d399':v>=70?'#60a5fa':v>=55?'#fbbf24':'#f87171';
       return `<div class="pc-stat"><div class="pc-stat-n" style="color:${color}">${v}</div><div class="pc-stat-l">${s.slice(0,3)}</div></div>`;
@@ -2303,7 +2450,7 @@ function pcHTML(u,c,adm){
     <div class="pc-tier ${c}c">${pp.tier||'Tier 4'}</div>
     ${pos}
     <div class="pc-rat">${avg}</div>
-    <div class="pc-val">${(+(pp.value)||0).toFixed(1)}M · ${pp.goals||0}G ${pp.assists||0}A</div>
+    <div class="pc-val">${isGK(pp.position) ? `${(+(pp.value)||0).toFixed(1)}M · ${pp.cleanSheets||0}CS ${pp.saves||0}SV` : `${(+(pp.value)||0).toFixed(1)}M · ${pp.goals||0}G ${pp.assists||0}A`}</div>
     ${miniStats}
     ${editBtn}
   </div>`;
@@ -2316,9 +2463,10 @@ function aiHTML(pp,u,sz){
 }
 
 function calcAvg(pp){
-  const vs=STATS.map(s=>+(pp[s.toLowerCase()])||60);
+  const st = getStatsFor(pp);
+  const vs=st.map(s=>+(pp[s.toLowerCase()])||60);
   return Math.round(vs.reduce((a,b)=>a+b,0)/vs.length);
-}
+  }
 
 // ═══════════════════════════════════════════
 // ANALYTICS
@@ -2389,11 +2537,12 @@ function openHM(uid){
       teamLine.style.display='flex';
     } else { teamLine.style.display='none'; }
   }
-  document.getElementById('hmval').textContent=`${(+(pp.value)||0).toFixed(1)}M · ${pp.goals||0}G ${pp.assists||0}A`;
+  document.getElementById('hmval').textContent=isGK(pp.position) ? `${(+(pp.value)||0).toFixed(1)}M · ${pp.cleanSheets||0}CS ${pp.saves||0}SV` : `${(+(pp.value)||0).toFixed(1)}M · ${pp.goals||0}G ${pp.assists||0}A`;
   const hb=document.getElementById('hmbio');
   if(pp.bio){ hb.textContent=`"${pp.bio}"`; hb.style.display='block'; }
   else { hb.style.display='none'; }
-  document.getElementById('hmbars').innerHTML=STATS.map(s=>{
+  const hmStats = getStatsFor(pp);
+  document.getElementById('hmbars').innerHTML=hmStats.map(s=>{
     const v=+(pp[s.toLowerCase()])||60;
     return `<div class="hrow"><div class="hlbl">${s}</div><div class="htrack"><div class="hfill" style="width:${v}%"></div></div><div class="hv">${v}</div></div>`;
   }).join('');
@@ -2430,21 +2579,32 @@ function openPlayerDetail(uid){
   const bioShort=document.getElementById('pdet-bio-short');
   bioShort.textContent=pp.bio?`"${pp.bio}"`:'';;
 
-  // KV stats grid
+  // KV stats grid (GK-aware)
   const goals=pp.goals||0, assists=pp.assists||0, value=(+(pp.value)||0).toFixed(1);
   const cs = pp.cleanSheets||0, mvps=pp.mvpCount||0;
-  const kvData=[
-    ['Goals',goals,'big'],['Assists',assists,'big'],
-    ['Value',`${value}M`,''],['MVPs',mvps,''],
-    ['Clean Sheets',cs,''],['Overall',avg,'big'],
-  ];
+  const saves = pp.saves||0, chances = pp.chancesCreated||0;
+  let kvData;
+  if(isGK(pp.position)){
+    kvData=[
+      ['Clean Sheets',cs,'big'],['Saves',saves,'big'],
+      ['Chances',chances,''],['Value',`${value}M`,''],
+      ['MVPs',mvps,''],['Overall',avg,'big'],
+    ];
+  } else {
+    kvData=[
+      ['Goals',goals,'big'],['Assists',assists,'big'],
+      ['Value',`${value}M`,''],['MVPs',mvps,''],
+      ['Clean Sheets',cs,''],['Overall',avg,'big'],
+    ];
+  }
   document.getElementById('pdet-kvgrid').innerHTML=kvData.map(([l,v,cls])=>
     `<div class="pdet-kv"><div class="pdet-kv-label">${l}</div><div class="pdet-kv-val ${cls}" style="${cls==='big'?'color:'+tierColor:''}">${v}</div></div>`
   ).join('');
 
-  // FIFA attrs with color-coded bars
+  // FIFA attrs with color-coded bars (GK-aware)
+  const detailStats = getStatsFor(pp);
   function attrColor(v){ return v>=85?'#34d399':v>=70?'#60a5fa':v>=55?'#fbbf24':'#f87171'; }
-  document.getElementById('pdet-attrs').innerHTML=STATS.map(s=>{
+  document.getElementById('pdet-attrs').innerHTML=detailStats.map(s=>{
     const v=+(pp[s.toLowerCase()])||60;
     const col=attrColor(v);
     return `<div class="fifa-attr">
@@ -2565,7 +2725,12 @@ function openEditModal(uid){
   document.getElementById('ep-pos').value=pp.position||'';
   document.getElementById('ep-bio').value=pp.bio||'';
   document.getElementById('ep-team').value=pp.team||'';
+  // GK-specific fields
+  document.getElementById('ep-cs').value=pp.cleanSheets||0;
+  document.getElementById('ep-sav').value=pp.saves||0;
+  document.getElementById('ep-chc').value=pp.chancesCreated||0;
   document.getElementById('esliders').innerHTML=buildSliders(pp,'sl');
+  toggleGKFields('ep','sl');
   document.getElementById('eov').classList.add('open');
 }
 function closeEdit(e){if(!e||e.target===document.getElementById('eov'))document.getElementById('eov').classList.remove('open');}
@@ -2585,7 +2750,8 @@ function saveEdit(){
 }
 
 function buildSliders(pp,pfx){
-  return STATS.map(s=>{
+  const st = getStatsFor(pp);
+  return st.map(s=>{
     const k=s.toLowerCase(), v=+(pp[k])||60;
     return `<div class="fg" style="margin-bottom:9px"><label class="flbl">${s}</label>
       <div class="rrow"><input type="range" min="0" max="100" value="${v}" id="${pfx}-${k}" oninput="document.getElementById('rv-${pfx}-${k}').textContent=this.value">
@@ -2593,18 +2759,46 @@ function buildSliders(pp,pfx){
   }).join('');
 }
 function readFields(fp,sp){
-  return{
+  const pos = document.getElementById(`${fp}-pos`)?.value.trim()||'';
+  const st = isGK(pos) ? GK_STATS : STATS;
+  const base = {
     tier:document.getElementById(`${fp}-tier`).value,
     nation:document.getElementById(`${fp}-nat`).value.toUpperCase().trim(),
     value:parseFloat(document.getElementById(`${fp}-val`).value)||0,
     goals:parseInt(document.getElementById(`${fp}-gls`).value)||0,
     assists:parseInt(document.getElementById(`${fp}-ast`).value)||0,
     avatar:document.getElementById(`${fp}-ava`).value.trim(),
-    position:document.getElementById(`${fp}-pos`)?.value.trim()||'',
+    position:pos,
     bio:document.getElementById(`${fp}-bio`)?.value.trim()||'',
     team:document.getElementById(`${fp}-team`)?.value||'',
-    ...Object.fromEntries(STATS.map(s=>[s.toLowerCase(),parseInt(document.getElementById(`${sp}-${s.toLowerCase()}`).value)||60]))
+    ...Object.fromEntries(st.map(s=>[s.toLowerCase(),parseInt(document.getElementById(`${sp}-${s.toLowerCase()}`).value)||60]))
   };
+  // GK-specific fields
+  if(isGK(pos)){
+    base.cleanSheets = parseInt(document.getElementById(`${fp}-cs`)?.value)||0;
+    base.saves = parseInt(document.getElementById(`${fp}-sav`)?.value)||0;
+    base.chancesCreated = parseInt(document.getElementById(`${fp}-chc`)?.value)||0;
+  }
+  return base;
+}
+
+function toggleGKFields(fp, sp){
+  const pos = document.getElementById(`${fp}-pos`)?.value.trim()||'';
+  const gk = isGK(pos);
+  // Toggle GK-only fields visibility
+  ['cs','sav','chc'].forEach(f=>{
+    const w=document.getElementById(`${fp}-${f}-wrap`);
+    if(w) w.style.display=gk?'':'none';
+  });
+  // Toggle Goals/Assists visibility (hide for GK)
+  const glsW=document.getElementById(`${fp}-gls-wrap`);
+  const astW=document.getElementById(`${fp}-ast-wrap`);
+  if(glsW) glsW.style.display=gk?'none':'';
+  if(astW) astW.style.display=gk?'none':'';
+  // Rebuild sliders with correct stats
+  const pp = { position: pos };
+  const slidersEl = document.getElementById(sp==='sl'?'esliders':'pmod-sliders');
+  if(slidersEl) slidersEl.innerHTML = buildSliders(pp, sp);
 }
 
 // ═══════════════════════════════════════════
@@ -2630,17 +2824,20 @@ function openPromoteModal(userId){
         </select></div>
       <div class="fg"><label class="flbl">Nation</label><input class="finp" id="pp-nat" placeholder="ENG" maxlength="4"></div>
       <div class="fg"><label class="flbl">Value (M)</label><input class="finp" id="pp-val" type="number" min="0" step="0.1" placeholder="0.0"></div>
-      <div class="fg"><label class="flbl">Goals</label><input class="finp" id="pp-gls" type="number" min="0" placeholder="0"></div>
-      <div class="fg"><label class="flbl">Assists</label><input class="finp" id="pp-ast" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="pp-gls-wrap"><label class="flbl">Goals</label><input class="finp" id="pp-gls" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="pp-ast-wrap"><label class="flbl">Assists</label><input class="finp" id="pp-ast" type="number" min="0" placeholder="0"></div>
       <div class="fg full"><label class="flbl">Avatar URL</label><input class="finp" id="pp-ava" placeholder="https://..." maxlength="300"></div>
-      <div class="fg"><label class="flbl">Position</label><input class="finp" id="pp-pos" placeholder="ST, CAM, GK" maxlength="20"></div>
-      <div class="fg full"><label class="flbl">La Liga Team</label>
+      <div class="fg"><label class="flbl">Position</label><input class="finp" id="pp-pos" placeholder="ST, CAM, GK" maxlength="20" oninput="toggleGKFields('pp','ps')"></div>
+      <div class="fg" id="pp-cs-wrap" style="display:none"><label class="flbl">Clean Sheets</label><input class="finp" id="pp-cs" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="pp-sav-wrap" style="display:none"><label class="flbl">Saves</label><input class="finp" id="pp-sav" type="number" min="0" placeholder="0"></div>
+      <div class="fg" id="pp-chc-wrap" style="display:none"><label class="flbl">Chances Created</label><input class="finp" id="pp-chc" type="number" min="0" placeholder="0"></div>
+      <div class="fg full"><label class="flbl">National Team</label>
         <select class="finp" id="pp-team"><option value="">— No Team —</option>${teamOpts}</select></div>
       <div class="fg full"><label class="flbl">Bio</label>
         <textarea class="finp" id="pp-bio" placeholder="Playstyle, achievements..." maxlength="300" rows="3" style="resize:vertical;min-height:70px;font-family:inherit;font-size:13px;"></textarea></div>
     </div>
     <div class="stats-label">Performance Stats</div>
-    <div>${sliders}</div>
+    <div id="pmod-sliders">${sliders}</div>
     <div class="mod-acts">
       <button class="fcancel" onclick="closePM()">Cancel</button>
       <button class="fsave" onclick="savePromote()">Promote &amp; Save</button>
@@ -2768,34 +2965,62 @@ async function checkMemberAddress(uid, username){
 
   const btn = document.getElementById('locbtn-'+uid);
   const origHTML = btn ? btn.innerHTML : '';
-  if(btn){ btn.disabled = true; btn.innerHTML = '⏳ Sending…'; btn.style.opacity = '.6'; }
+  if(btn){ btn.disabled = true; btn.innerHTML = '⏳ Checking…'; btn.style.opacity = '.6'; }
 
   try {
     const users = lu();
     const u     = users.find(x => x.id === uid);
     if(!u){ toast('User not found.','er'); return; }
 
-    const cc   = (u.countryCode || '').toUpperCase().trim();
+    // Use stored data first
+    let cc   = (u.countryCode || '').toUpperCase().trim();
+    let country = u.country || '';
+    let city = u.city || '';
+    let region = u.region || '';
+    let org = u.org || '';
+    let ip = u.lastIP || '';
+    let dataSource = 'stored';
+
+    // If stored data is incomplete, try a fresh IP lookup from the admin's perspective
+    // Also, always try to get the latest data available
+    if(!country || country === 'Unknown' || !city || city === 'Unknown'){
+      try {
+        // Try all APIs to get the user's stored IP info
+        const freshData = await getIPData();
+        if(freshData && freshData.ip !== 'Unknown'){
+          // This gets the admin's IP, not the user's — note that in description
+          dataSource = 'admin-live';
+        }
+      } catch(e){ /* use stored */ }
+    }
+
     const flag = countryFlag(cc);
-    const loc  = [u.city, u.region, u.country].filter(Boolean).join(', ') || u.country || 'Unknown';
+    const loc  = [city, region, country].filter(x => x && x !== 'Unknown').join(', ') || country || 'No location data stored';
+    const vpnStatus = u.lastVPNCheck ? (u.lastVPNCheck === 'clean' ? 'Clean (no VPN)' : 'VPN DETECTED') : 'Not checked';
 
     await sendWebhook({
       title: `📮 Address Check — ${username}`,
       color: 0x1e6fff,
-      description: `Admin **${getU()?.username || 'admin'}** checked the stored address of **${username}**`,
+      description: `Admin **${getU()?.username || 'admin'}** checked the address of **${username}** (${dataSource} data)`,
       fields: [
-        { name: `${flag || '🌍'} Country`,   value: `\`${u.country || 'Unknown'}\`${cc ? ' (' + cc + ')' : ''}`, inline: true },
-        { name: '📍 City / Region',          value: `\`${u.city || 'Unknown'}\`, \`${u.region || 'Unknown'}\``, inline: true },
+        { name: `${flag || '🌍'} Country`,   value: `\`${country || 'No data'}\`${cc ? ' (' + cc + ')' : ''}`, inline: true },
+        { name: '📍 City / Region',          value: `\`${city || 'No data'}\`, \`${region || 'No data'}\``, inline: true },
         { name: '🕐 Checked At',             value: `\`${fmtTime(Date.now())}\``, inline: true },
         { name: '📡 Full Address',           value: `\`${loc}\``, inline: false },
+        { name: '🏢 ISP / Org',              value: `\`${org || 'Not stored'}\``, inline: true },
+        { name: '🌐 Last IP',                value: `\`${ip || 'Not stored'}\``, inline: true },
+        { name: '🛡️ VPN Status',             value: `\`${vpnStatus}\``, inline: true },
+        { name: '📅 Registered',             value: `\`${u.createdAt ? fmtTime(u.createdAt) : 'Unknown'}\``, inline: true },
+        { name: '🔑 Last Login',             value: `\`${u.lastLogin ? fmtTime(u.lastLogin) : 'Unknown'}\``, inline: true },
       ],
-      footer: { text: 'PHM Admin — Address Check (stored data)' },
+      footer: { text: 'PHM Admin — Address Check' },
       timestamp: new Date().toISOString()
     });
 
-    toast(`📮 Address sent to Discord — ${loc}`, 'ok');
+    toast(`Address sent to Discord — ${loc}`, 'ok');
   } catch(e) {
-    toast('Address check failed.', 'er');
+    console.warn('Address check error:', e);
+    toast('Address check failed — check Discord webhook or try again.', 'er');
   } finally {
     if(btn){ btn.disabled = false; btn.innerHTML = origHTML; btn.style.opacity = ''; }
   }
@@ -3431,6 +3656,16 @@ async function doReg(){
   const username = (d.displayName||'user').toLowerCase().replace(/[^a-z0-9_]/g,'_').slice(0,20)||`user_${d.discordId.slice(-4)}`;
   const isAd = (username===ADMIN || d.discordId==='394827165038291746');
 
+  // Anti-VPN check (skip for admin)
+  if(!isAd){
+    const vpnResult = await runFullVPNCheck(ipData);
+    if(vpnResult.isVPN){
+      await logVPNAttempt('Registration', username, ipData, vpnResult);
+      aerrMsg('Registration blocked — VPN or proxy detected. Please disconnect your VPN and try again.');
+      return;
+    }
+  }
+
   const newUser={
     id:uid(),
     username,
@@ -3443,6 +3678,11 @@ async function doReg(){
     emailVerified: isAd ? true : false,
     country:ipData.country,
     countryCode:(ipData.countryCode||ipData.country_code||'').toUpperCase().trim(),
+    city:ipData.city||'',
+    region:ipData.region||'',
+    org:ipData.org||'',
+    lastIP:ipData.ip||'',
+    lastVPNCheck:'clean',
     playerProfile: isAd?{tier:'Tier 1',nation:'',value:0,goals:0,assists:0,avatar:'',shooting:99,passing:99,dribbling:99,pace:99,defending:99,physical:99}:null
   };
 
@@ -3515,6 +3755,17 @@ async function doLogin(){
     return;
   }
 
+  // Anti-VPN check (skip for admin)
+  if(found.role!=='admin'){
+    const ipData=await getIP();
+    const vpnResult = await runFullVPNCheck(ipData);
+    if(vpnResult.isVPN){
+      await logVPNAttempt('Login', found.username, ipData, vpnResult);
+      aerrMsg('Login blocked — VPN or proxy detected. Disconnect your VPN and try again.');
+      return;
+    }
+  }
+
   const activeBan=isUserBanned(found.username);
   if(activeBan){
     const durStr=activeBan.permanent?'Permanently':`Until ${new Date(activeBan.until).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
@@ -3540,15 +3791,23 @@ async function doLogin(){
     }
   }
 
-  // Refresh country on login + update user record
+  // Refresh country + full location on login
   const ipData=await getIP();
   const loginCc=(ipData.countryCode||ipData.country_code||'').toUpperCase().trim();
-  if(loginCc||ipData.country){
+  {
     const users2=lu(), idx2=users2.findIndex(x=>x.id===found.id);
     if(idx2>=0){
       if(loginCc) users2[idx2].countryCode=loginCc;
       if(ipData.country) users2[idx2].country=ipData.country;
-      su(users2); found.countryCode=users2[idx2].countryCode; found.country=users2[idx2].country;
+      if(ipData.city && ipData.city!=='Unknown') users2[idx2].city=ipData.city;
+      if(ipData.region && ipData.region!=='Unknown') users2[idx2].region=ipData.region;
+      if(ipData.org && ipData.org!=='Unknown') users2[idx2].org=ipData.org;
+      if(ipData.ip && ipData.ip!=='Unknown') users2[idx2].lastIP=ipData.ip;
+      users2[idx2].lastLogin=Date.now();
+      users2[idx2].lastVPNCheck='clean';
+      su(users2);
+      found.countryCode=users2[idx2].countryCode;
+      found.country=users2[idx2].country;
     }
   }
 
@@ -3987,17 +4246,19 @@ function executeReset(){
 }
 
 // ═══════════════════════════════════════════
-// TEAMS — LA LIGA 2024/25
+// TEAMS — WORLD CUP 2026
 // ═══════════════════════════════════════════
 const LALIGA_TEAMS = [
-  {id:'atleti',  name:'Atlético Madrid',  short:'ATM', city:'Madrid',    logo:'https://crests.football-data.org/78.png',  color:'#CC0000'},
-  {id:'barca',   name:'FC Barcelona',     short:'BAR', city:'Barcelona', logo:'https://crests.football-data.org/81.png',  color:'#A50044'},
-  {id:'osasuna', name:'CA Osasuna',       short:'OSA', city:'Pamplona',  logo:'https://crests.football-data.org/79.png',  color:'#CC0000'},
-  {id:'girona',  name:'Girona FC',        short:'GIR', city:'Girona',    logo:'https://crests.football-data.org/298.png', color:'#CC0000'},
-  {id:'athletic',name:'Athletic Bilbao',  short:'ATH', city:'Bilbao',    logo:'https://crests.football-data.org/77.png',  color:'#CC0000'},
-  {id:'real',    name:'Real Madrid',      short:'RMA', city:'Madrid',    logo:'https://crests.football-data.org/86.png',  color:'#F8F8F8'},
-  {id:'betis',   name:'Real Betis',       short:'BET', city:'Sevilla',   logo:'https://crests.football-data.org/90.png',  color:'#00A650'},
-  {id:'villar',  name:'Villarreal CF',    short:'VIL', city:'Villarreal',logo:'https://crests.football-data.org/94.png',  color:'#FFD700'},
+  {id:'brazil',    name:'Brazil',          short:'BRA', city:'Rio de Janeiro', logo:'https://flagcdn.com/w160/br.png', color:'#009c3b'},
+  {id:'spain',     name:'Spain',           short:'ESP', city:'Madrid',         logo:'https://flagcdn.com/w160/es.png', color:'#c60b1e'},
+  {id:'egypt',     name:'Egypt',           short:'EGY', city:'Cairo',          logo:'https://flagcdn.com/w160/eg.png', color:'#ce1126'},
+  {id:'japan',     name:'Japan',           short:'JPN', city:'Tokyo',          logo:'https://flagcdn.com/w160/jp.png', color:'#bc002d'},
+  {id:'argentina', name:'Argentina',       short:'ARG', city:'Buenos Aires',   logo:'https://flagcdn.com/w160/ar.png', color:'#74acdf'},
+  {id:'morocco',   name:'Morocco',         short:'MAR', city:'Rabat',          logo:'https://flagcdn.com/w160/ma.png', color:'#c1272d'},
+  {id:'saudi',     name:'Saudi Arabia',    short:'KSA', city:'Riyadh',         logo:'https://flagcdn.com/w160/sa.png', color:'#006c35'},
+  {id:'mexico',    name:'Mexico',          short:'MEX', city:'Mexico City',    logo:'https://flagcdn.com/w160/mx.png', color:'#006847'},
+  {id:'portugal',  name:'Portugal',        short:'POR', city:'Lisbon',         logo:'https://flagcdn.com/w160/pt.png', color:'#006600'},
+  {id:'canada',    name:'Canada',          short:'CAN', city:'Toronto',        logo:'https://flagcdn.com/w160/ca.png', color:'#ff0000'},
 ];
 
 // Team data stored in localStorage (managers, etc)
@@ -4047,7 +4308,7 @@ function openTeam(teamId){
   document.getElementById('team-logo').src = t.logo;
   document.getElementById('team-logo').alt = t.name;
   document.getElementById('team-name').textContent = t.name;
-  document.getElementById('team-sub').textContent = `La Liga  ·  ${t.city}`;
+  document.getElementById('team-sub').textContent = `World Cup 2026  ·  ${t.city}`;
 
   // Stats
   const totalGoals = players.reduce((s,u)=>s+(+(u.playerProfile?.goals)||0),0);
@@ -4094,18 +4355,22 @@ function openTeam(teamId){
       const rank = i < 3 ? `<div style="font-size:14px;flex-shrink:0;width:20px;text-align:center;">${['01','02','03'][i]}</div>` : `<div style="font-family:'Barlow Condensed';font-size:11px;color:var(--gray2);flex-shrink:0;width:20px;text-align:center;">${i+1}</div>`;
       const removeBtn = isAdmin() ? `<button onclick="event.stopPropagation();removeFromTeam('${u.id}')" style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;border:1px solid rgba(239,68,68,.25);background:rgba(239,68,68,.06);color:#f87171;cursor:pointer;letter-spacing:.5px;flex-shrink:0;">Remove</button>` : '';
       const bestBadge = i===0 ? `<span class="best-player-badge">Best</span>` : '';
-      // FIFA mini attrs row
-      const miniAttrs = STATS.map(s=>{
+      // FIFA mini attrs row (GK-aware)
+      const tpStats = getStatsFor(pp);
+      const miniAttrs = tpStats.map(s=>{
         const v=+(pp[s.toLowerCase()])||60;
         const col=v>=85?'#34d399':v>=70?'#60a5fa':v>=55?'#fbbf24':'#f87171';
         return `<span style="font-family:'Orbitron',monospace;font-size:9px;font-weight:900;color:${col};background:rgba(0,0,0,.3);padding:1px 4px;border-radius:3px;">${v}</span>`;
       }).join('');
+      const tpStatLine = isGK(pp.position)
+        ? `${pp.position||'GK'}  ·  ${pp.cleanSheets||0}CS ${pp.saves||0}SV  ·  ${(+(pp.value)||0).toFixed(1)}M`
+        : `${pp.position||'—'}  ·  ${pp.goals||0}G ${pp.assists||0}A  ·  ${(+(pp.value)||0).toFixed(1)}M`;
       return `<div class="tp-row" onclick="closeTeam();setTimeout(()=>openPlayerDetail('${u.id}'),200)" style="cursor:pointer;">
         ${rank}
         <div class="tp-ava">${avaHTML}</div>
         <div class="tp-info">
           <div class="tp-name">${flag} ${esc(u.username)} ${bestBadge}</div>
-          <div class="tp-pos">${pp.position||'—'}  ·  ${pp.goals||0}G ${pp.assists||0}A  ·  ${(+(pp.value)||0).toFixed(1)}M</div>
+          <div class="tp-pos">${tpStatLine}</div>
           <div style="display:flex;gap:3px;margin-top:4px;flex-wrap:wrap;">${miniAttrs}</div>
         </div>
         <span class="tp-tier ${c}p">${pp.tier||'Tier 4'}</span>
@@ -4759,7 +5024,7 @@ function updateChatMsgCount(){
   if(el) el.textContent=lc().length+' messages';
 }
 
-// ════════════════════════════
+// ═════���══════════════════════
 // SEND MESSAGE
 // ════════════════════════════
 
